@@ -1,51 +1,31 @@
-.SILENT:
-
 CC	= g++
-
-DEBUG	?= 0
 
 RM	= rm -rf
 
-LDFLAGS	+= 
+LDFLAGS	+= -shared
 
-CXXFLAGS += -W -Wall -Iinclude
+CXXFLAGS += -W -Wall -Iinclude -fpic -rdynamic
 
-ifeq ($(DEBUG), 1)
-	CXXFLAGS+= -DDEBUG -g3
-else
-	CXXFLAGS+= -Werror 
-endif
-
-SRCS	= 	source/Main.cpp \
-	source/Properties.cpp \
-	source/main.cpp \
+SRCS	= source/Properties.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
-NAME	= gen
+NAME	= build/properties.so
+
 all: $(NAME) ## Compile
 
 $(NAME): $(OBJS)
+	mkdir -p build
+	cp include/Properties.hpp build/Properties.h
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean: ## Clean .o
 	$(RM) $(OBJS)
 
-fclean: clean ## Clean binary and .o
-	$(RM) $(NAME)
-	$(RM) debug
-
-clean_comment: ## Clean all comment //
-	find -type f -name "*.cpp" | xargs sed -i 's://.*1980::g'
+fclean: clean ## Clean binary
+	$(RM) build
 
 help: 
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-debug: fclean ## Compile to debug mode
-	make -j re DEBUG=1
-	mkdir debug
-	mv $(NAME) debug/
-
-re: fclean all ## Recompile
-
-.PHONY: all re clean fclean help debug clean_comment
+.PHONY: all clean fclean help
