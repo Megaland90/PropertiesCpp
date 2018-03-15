@@ -6,12 +6,12 @@ int Main::main(const int ac, const std::string *av)
     if (ac == 2)
     {
         Properties properties(av[1]);
-        /*properties.get("zia")->foreachKeys([](std::string & key)
+        properties.get("zia")->foreachKeys([](std::string & key)
         {
             std::cout << key << std::endl;
         });
         std::cout << properties.get("zia")->get("root")->getValue() << std::endl;
-        */
+        
         properties.add("test")->setValue("ok");
         properties.save("test.properties");
     }
