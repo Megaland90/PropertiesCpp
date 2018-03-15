@@ -4,7 +4,7 @@ RM	= rm -rf
 
 LDFLAGS	+= -shared
 
-CXXFLAGS += -W -Wall -Iinclude -fpic -rdynamic
+CXXFLAGS += -W -Wall -Iinclude -fPIC -rdynamic
 
 SRCS	= source/Properties.cpp \
 
