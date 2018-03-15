@@ -61,7 +61,7 @@ Properties::Properties(const std::string &file)
     {
         while (getline (myfile,line))
         {
-            if (line[0] != '#')
+            if (line.length() > 0 && line[0] != '#')
                 this->parse(line);
         }
         myfile.close();
