@@ -16,7 +16,7 @@ all: $(NAME) ## Compile
 
 $(NAME): $(OBJS)
 	mkdir -p build
-	cp include/Properties.hpp build/Properties.h
+	cp include/Properties.hpp build/Properties.hpp
 	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
 
 clean: ## Clean .o
