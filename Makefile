@@ -25,9 +25,9 @@ fclean: clean ## Clean binary
 	$(RM) build
 
 install : all
-	sudo mkdir -p /usr/include/Properties
-	sudo cp include/Properties.hpp /usr/include/Properties/Properties.hpp
-	sudo cp build/$(NAME) /usr/lib/$(NAME)
+	mkdir -p /usr/include/Properties
+	cp include/Properties.hpp /usr/include/Properties/Properties.hpp
+	cp build/$(NAME) /usr/lib/$(NAME)
 
 
 help: 
