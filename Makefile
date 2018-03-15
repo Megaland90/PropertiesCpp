@@ -10,14 +10,13 @@ SRCS	= source/Properties.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
-NAME	= build/properties.so
+NAME	= libproperties.so
 
-all: $(NAME) ## Compile
+all: build/$(NAME) ## Compile
 
-$(NAME): $(OBJS)
+build/$(NAME): $(OBJS)
 	mkdir -p build
-	cp include/Properties.hpp build/Properties.hpp
-	$(CC) -o $(NAME) $(OBJS) $(LDFLAGS)
+	$(CC) -o build/$(NAME) $(OBJS) $(LDFLAGS)
 
 clean: ## Clean .o
 	$(RM) $(OBJS)
@@ -25,7 +24,13 @@ clean: ## Clean .o
 fclean: clean ## Clean binary
 	$(RM) build
 
+install : all
+	sudo mkdir -p /usr/include/Properties
+	sudo cp include/Properties.hpp /usr/include/Properties/Properties.hpp
+	sudo cp build/$(NAME) /usr/lib/$(NAME)
+
+
 help: 
 	@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' Makefile | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 
-.PHONY: all clean fclean help
+.PHONY: all clean fclean help install
