@@ -1,0 +1,4 @@
+name=libProperties
+key=demo
+key.parent=parent
+key.child=child
