@@ -32,7 +32,7 @@ install : all
 	cp build/$(NAME) /usr/lib/$(NAME)
 
 uninstall:
-	rm -rf /usr/include/Properties/Properties.hpp
+	rm -rf /usr/include/Properties
 	rm -rf /usr/lib/$(NAME)
 
 help: 
