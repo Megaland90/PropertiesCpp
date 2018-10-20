@@ -15,6 +15,7 @@ class PropertiesValue
         std::map<std::string, PropertiesValue*> map;
     public:
         PropertiesValue();
+        ~PropertiesValue();
         void setValue(const std::string &);
         std::string getValue();
         const std::vector<std::string> &getAllKeys();

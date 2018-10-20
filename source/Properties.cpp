@@ -48,6 +48,14 @@ void PropertiesValue::foreachKeys(std::function<void(std::string&)> func)
     }
 }
 
+PropertiesValue::~PropertiesValue()
+{
+    this->foreachKeys([&](std::string &key)
+    {
+        delete this->get(key);
+    });
+}
+
 /*
 ** Properties
 */
