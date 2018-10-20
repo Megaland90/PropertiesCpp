@@ -7,6 +7,7 @@ LDFLAGS	+= -shared
 CXXFLAGS += -W -Wall -Iinclude -fPIC -rdynamic
 
 SRCS	= source/Properties.cpp \
+		  source/PropertiesValue.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
@@ -27,6 +28,7 @@ fclean: clean ## Clean binary
 install : all
 	mkdir -p /usr/include/Properties
 	cp include/Properties.hpp /usr/include/Properties/Properties.hpp
+	cp include/PropertiesValue.hpp /usr/include/Properties/PropertiesValue.hpp
 	cp build/$(NAME) /usr/lib/$(NAME)
 
 uninstall:
